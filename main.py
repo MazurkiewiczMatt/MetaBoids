@@ -1,6 +1,5 @@
 import random
 import numpy as np
-from PIL import Image, ImageDraw
 import pygame
 import sys
 
@@ -12,7 +11,7 @@ dt = 0.1
 
 
 def initialize_boid():
-    return [random.random() * SCALE, random.random() * SCALE, 1, random.random() * 2 * np.pi]
+    return [random.random() * SCALE, random.random() * SCALE, random.random() * 2 * np.pi]
 
 
 def initialize(N=10):
@@ -27,8 +26,8 @@ state = initialize()
 
 def update(state):
     s = np.transpose(state)
-    s[0] = s[0] + s[2] * np.cos(s[3]) * dt
-    s[1] = s[1] + s[2] * np.sin(s[3]) * dt
+    s[0] = s[0] + np.cos(s[3]) * dt
+    s[1] = s[1] + np.sin(s[3]) * dt
     return np.transpose(s)
 
 def check_if_close(index, state, radius=bsize/c, bounds=(SCALE, SCALE)):
